@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Job List</div>
 
@@ -17,30 +17,32 @@
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Mobile</th>
+                          <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($ObjJobs as $Jobs)
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <th scope="row">{{ $loop->iteration }}</th>
+                          <td>{{ $Jobs->name }}</td>
+                          <td>{{ $Jobs->email }}</td>
+                          <td>{{ $Jobs->mobile }}</td>
+                          <td>
+                            <form method="GET" class="btn-cls" action="{{ route('Job-show' , ['id' => $Jobs->id]) }}">
+                                  <input class="btn btn-primary" type="submit" value="Edit"></input>
+                            </form>
+
+                            <form method="POST" class="btn-cls" action="{{ route('Job-delete' , ['id' => $Jobs->id]) }}">
+                              @csrf
+                              {{method_field('DELETE')}}
+                              <input class="btn btn-danger" type="submit" value="Delete"></input>
+                            </form>
+                          </td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry the Bird</td>
-                          <td>@twitter</td>
-                          <td>@twitter</td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                 </div>

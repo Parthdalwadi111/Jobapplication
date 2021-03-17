@@ -11,18 +11,35 @@ class jobs extends Model
 
     public static function CreateData($input)
     {
-        $objJobs = new jobs;
-        $objJobs->name    = $input['name'];
-        $objJobs->email    = $input['email'];
-        $objJobs->address    = $input['address'];
-        $objJobs->gender    = $input['gender'];
-        $objJobs->mobile    = $input['mobile'];
-        $objJobs->preferred_location    = $input['preferred_location'];
-        $objJobs->current_ctc    = $input['current_ctc'];
-        $objJobs->expected_ctc    = $input['expected_ctc'];
-        $objJobs->notice_period    = $input['notice_period'];
+        $ObjJobs = new jobs;
+        $ObjJobs->name    = $input['name'];
+        $ObjJobs->email    = $input['email'];
+        $ObjJobs->address    = $input['address'];
+        $ObjJobs->gender    = $input['gender'];
+        $ObjJobs->mobile    = $input['mobile'];
+        $ObjJobs->preferred_location    = $input['preferred_location'];
+        $ObjJobs->current_ctc    = $input['current_ctc'];
+        $ObjJobs->expected_ctc    = $input['expected_ctc'];
+        $ObjJobs->notice_period    = $input['notice_period'];
 
-        $objJobs->save();
-        return $objJobs;
+        $ObjJobs->save();
+        return $ObjJobs;
+    }
+
+    public static function UpdateData($input,$id)
+    {
+        $ObjJobs = jobs::where("id",$id)->first();
+        $ObjJobs->name    = $input['name'];
+        $ObjJobs->email    = $input['email'];
+        $ObjJobs->address    = $input['address'];
+        $ObjJobs->gender    = $input['gender'];
+        $ObjJobs->mobile    = $input['mobile'];
+        $ObjJobs->preferred_location    = $input['preferred_location'];
+        $ObjJobs->current_ctc    = $input['current_ctc'];
+        $ObjJobs->expected_ctc    = $input['expected_ctc'];
+        $ObjJobs->notice_period    = $input['notice_period'];
+
+        $ObjJobs->save();
+        return $ObjJobs;
     }
 }

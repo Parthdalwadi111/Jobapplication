@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('create_job', 'JobController@store')->name('Job');
-// Route::get('/JobCreate', 'HomeController@index')->name('Job');
+Route::get('Job-show/{id}', 'JobController@show')->name('Job-show');
+Route::get('Job-update/{id}', 'JobController@update')->name('Job-update');
+Route::delete('Job-delete/{id}', 'JobController@destroy')->name('Job-delete');
+Auth::routes();

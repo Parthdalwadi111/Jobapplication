@@ -21,63 +21,7 @@ class JobController extends Controller
     public function index()
     {
         
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $input = $request->all();
-
-        $FinalArr['name'] = $request->name;
-        $FinalArr['email'] = $request->email;
-        $FinalArr['address'] = $request->address;
-        $FinalArr['gender'] = $request->gender;
-        $FinalArr['mobile'] = $request->mobile;        
-
-        /*  qualification  */
-        for ($i=0; $i < $request->hidden_ad_level ; $i++) {
-            $qualiArr["institute"] = $request->institute[$i];
-            $qualiArr["year"] = $request->year[$i];
-            $qualiArr["marks"] = $request->marks[$i];
-            $FinalArr['qualification'][$request->qualification[$i]] = $qualiArr;
-        }
-        /*  qualification  */
-
-        /*  company  */
-        for ($i=0; $i < $request->hidden_work_level ; $i++) {
-            $qualiArr["designation"] = $request->designation[$i];
-            $qualiArr["from"] = $request->from[$i];
-            $qualiArr["to"] = $request->to[$i];
-            $FinalArr['company'][$request->company[$i]] = $qualiArr;
-        }
-        // dd($FinalArr);
-        /*  company  */
-
-        /*  language  */
-        $FinalArr['language']['Hindi'] = (isset($request->hindi_types) ? implode(',',$request->hindi_types) : '');
-        $FinalArr['language']['English'] = (isset($request->english_types) ? implode(',',$request->english_types) : '');
-        $FinalArr['language']['Gujarati'] = (isset($request->gujarati_types) ? implode(',',$request->gujarati_types) : '');
-        // dd($FinalArr);
-        /*  language  */
-
-        /*  experience  */
-        $FinalArr['technical_experience']['PHP'] = (isset($request->experience_types_php) ? implode(',',$request->experience_types_php) : '');
-        $FinalArr['technical_experience']['Mysql'] = (isset($request->experience_types_mysql) ? implode(',',$request->experience_types_mysql) : '');
-        $FinalArr['technical_experience']['Laravel'] = (isset($request->experience_types_laravel) ? implode(',',$request->experience_types_laravel) : '');
-        $FinalArr['technical_experience']['Oracle'] = (isset($request->experience_types_oracle) ? implode(',',$request->experience_types_oracle) : '');
-        /*  experience  */
-
-        $FinalArr['preferred_location'] = $request->preferred_location;
-        $FinalArr['current_ctc'] = $request->current_ctc;
-        $FinalArr['expected_ctc'] = $request->expected_ctc;
-        $FinalArr['notice_period'] = $request->notice_period;
-
-        dd($FinalArr);
-    }
+    }   
 
     /**
      * Store a newly created resource in storage.
@@ -147,7 +91,8 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $ObjJobs = jobs::where("id",$id)->first();
+        return view('job/view',compact(['ObjJobs']));
     }
 
     /**
@@ -170,7 +115,9 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $ObjJobs = jobs::UpdateData($input,$id);
+        return redirect('/home');
     }
 
     /**
@@ -181,6 +128,8 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ObjJobs = jobs::where("id",$id)->first();
+        $ObjJobs->delete();
+        return redirect('/home');
     }
 }

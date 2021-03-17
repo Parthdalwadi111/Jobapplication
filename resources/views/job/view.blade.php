@@ -2,26 +2,29 @@
 
 @section('content')
 <div class="container">
-    <h3 style="text-align: center;">Application Forms</h3>
-    <form class="form-horizontal" type="POST" action="{{ route('Job') }}">
+    <h3 style="text-align: center;"> Edit Application Forms</h3>
+    <form class="form-horizontal" type="POST" action="{{ route('Job-update' , ['id' => $ObjJobs->id]) }}">
 
     <div class="row">
         <div class="col-md-12">
             <!-- Basic Details -->
             <div class="card">
-                <div class="card-header">Basic Details</div>
+                <div class="card-header">
+                  Basic Details
+                  <a class="btn btn-primary" style="float:right;" href="{{ route('home') }}">Back</a>
+                </div>
                 <div class="card-body">
                     <div class="form-group row col-md-12">
                         <div class="form-group col-md-6">
                             <label class="control-label col-sm-5" for="name">Name:</label>
                             <div class="col-sm-10">
-                                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+                                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ $ObjJobs->name }}" >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label col-sm-5" for="email">Email:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ $ObjJobs->email }}">
                             </div>
                         </div>
                     </div>
@@ -30,19 +33,20 @@
                         <div class="form-group col-md-6">
                             <label class="control-label col-sm-5" for="address">Address:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                                <textarea class="form-control" name="address" id="address" rows="3">{{ $ObjJobs->address }}
+                                </textarea>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label col-sm-5" for="gender">Gender:</label>
                             <div class="col-md-3" style="margin: 0 0 0 30px;">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="{{ $ObjJobs->gender }}" {{ ($ObjJobs->gender == "male" ? ' checked' : '') }} >
                                 <label class="form-check-label" for="male">
                                 Male
                                 </label>
                             </div>
                             <div class="col-md-3" style="margin: 0 0 0 30px;">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="{{ $ObjJobs->gender }}" {{ ($ObjJobs->gender == "female" ? ' checked' : '') }}>
                                 <label class="form-check-label" for="female">
                                   Female
                                 </label>
@@ -54,7 +58,7 @@
                         <div class="form-group col-md-6">
                             <label class="control-label col-sm-5" for="mobile">Mobile:</label>
                             <div class="col-sm-10">
-                                <input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile">
+                                <input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile" value="{{ $ObjJobs->mobile }}">
                             </div>
                         </div>
                     </div>
@@ -303,9 +307,9 @@
                         <div class="col-md-4">
                             <select class="form-control" name="preferred_location" aria-label="Default select example">
                                 <option selected> select </option>
-                                <option value="Prahladnagar">Prahladnagar</option>
-                                <option value="Thaltej">Thaltej</option>
-                                <option value="Iskon">Iskon</option>
+                                <option value="Prahladnagar" {{ ($ObjJobs->preferred_location == "Prahladnagar" ? ' selected' : '') }}>Prahladnagar</option>
+                                <option value="Thaltej" {{ ($ObjJobs->preferred_location == "Thaltej" ? ' selected' : '') }}>Thaltej</option>
+                                <option value="Iskon" {{ ($ObjJobs->preferred_location == "Iskon" ? ' selected' : '') }}>Iskon</option>
                             </select>
                         </div>
                     </div>
@@ -313,21 +317,21 @@
                     <div class="form-group col-md-12 row">
                         <label class="control-label col-sm-2" for="current_ctc">Current CTC:</label>
                         <div class="col-md-4">
-                            <input type="mobile" class="form-control" id="current_ctc" placeholder="Enter Current CTC" name="current_ctc">
+                            <input type="mobile" class="form-control" id="current_ctc" placeholder="Enter Current CTC" name="current_ctc" value="{{ $ObjJobs->current_ctc }}">
                         </div>
                     </div>
 
                     <div class="form-group col-md-12 row">
                         <label class="control-label col-sm-2" for="expected_ctc">Expected CTC:</label>
                         <div class="col-md-4">
-                            <input type="mobile" class="form-control" id="expected_ctc" placeholder="Enter Expected CTC" name="expected_ctc">
+                            <input type="mobile" class="form-control" id="expected_ctc" placeholder="Enter Expected CTC" name="expected_ctc" value="{{ $ObjJobs->expected_ctc }}">
                         </div>
                     </div>
 
                     <div class="form-group col-md-12 row">
                         <label class="control-label col-sm-2" for="notice_period">Notice Period:</label>
                         <div class="col-md-4">
-                            <input type="mobile" class="form-control" id="notice_period" placeholder="Enter Notice Period" name="notice_period">
+                            <input type="mobile" class="form-control" id="notice_period" placeholder="Enter Notice Period" name="notice_period" value="{{ $ObjJobs->notice_period }}">
                         </div>
                     </div>
                 </div>
