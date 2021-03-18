@@ -31,9 +31,9 @@
                           <td>{{ $Jobs->email }}</td>
                           <td>{{ $Jobs->mobile }}</td>
                           <td>
-                            <form method="GET" class="btn-cls" action="{{ route('Job-show' , ['id' => $Jobs->id]) }}">
-                                  <input class="btn btn-primary" type="submit" value="Edit"></input>
-                            </form>
+                            <a class="btn btn-primary btn-cls" href="{{ route('Job-show' , ['id' => $Jobs->id]) }}">
+                                  Edit
+                            </a>
 
                             <form method="POST" class="btn-cls" action="{{ route('Job-delete' , ['id' => $Jobs->id]) }}">
                               @csrf

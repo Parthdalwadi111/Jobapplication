@@ -26,6 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         $ObjJobs = jobs::get();
-        return view('job/home',compact(['ObjJobs']));
+        return view('job/index',compact(['ObjJobs']));
     }
 }
